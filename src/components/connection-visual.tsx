@@ -41,3 +41,6 @@ export function ConnectionVisual() {
       </div>
     </div>
   );
+}
+
+export default ConnectionVisual;
