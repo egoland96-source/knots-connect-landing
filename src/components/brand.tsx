@@ -9,3 +9,6 @@ export function Brand() {
       <span className="text-lg font-bold tracking-tight">Knots Connect</span>
     </div>
   );
+}
+
+export default Brand;

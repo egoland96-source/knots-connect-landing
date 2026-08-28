@@ -71,3 +71,6 @@ export function SiteNav() {
       </nav>
     </header>
   );
+}
+
+export default SiteNav;
