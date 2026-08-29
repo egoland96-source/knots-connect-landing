@@ -7,8 +7,8 @@ export function SiteNav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="absolute left-0 right-0 top-0 z-50">
-      <nav className="mx-auto flex max-w-[1240px] items-center justify-between px-5 py-5 lg:px-8">
+    <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/5 bg-[#0a0a0f]/30 backdrop-blur-md">
+      <nav className="mx-auto flex max-w-[1240px] items-center justify-between px-5 py-4 lg:px-8">
         <Brand />
 
         {/* Desktop nav */}
@@ -49,7 +49,7 @@ export function SiteNav() {
 
         {/* Mobile menu */}
         {open && (
-          <div className="absolute left-0 right-0 top-16 mx-5 rounded-xl border border-white/10 bg-[#0a0a0f]/95 p-4 backdrop-blur md:hidden">
+            <div className="absolute left-0 right-0 top-16 mx-5 rounded-xl border border-white/10 bg-[#0a0a0f]/30 p-4 backdrop-blur-md md:hidden">
             <div className="flex flex-col gap-3">
               <a href="#features" className="text-sm text-[#94a3b8] transition hover:text-white">
                 Özellikler
