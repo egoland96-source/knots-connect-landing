@@ -263,14 +263,13 @@ export default function Home() {
 
       <main id="main">
         <section className="hero-section" aria-labelledby="hero-title">
-          <div className="hero-image-layer" style={{ backgroundImage: "linear-gradient(90deg, rgba(8,12,20,.78), rgba(8,12,20,.2)), url('/assets/knots-route-ambient.webp')" }} aria-hidden="true" />
+          <div className="hero-image-layer" aria-hidden="true" />
           <div className="hero-section__inner section-width">
             <div className="hero-copy">
-              <div className="eyebrow"><span className="eyebrow__line" /> PRIVATE NETWORK CLIENT</div>
-              <h1 id="hero-title">Your connection.<br /><em>Your control.</em></h1>
-              <p className="hero-copy__lead">VPN connectivity, network protection and tracker blocking in one app.</p>
-              <div className="hero-actions"><DownloadLink release={release} /><a className="text-link" href="#features">Explore features <ChevronDown size={15} /></a></div>
-              <div className="hero-release-proof"><span className="hero-release-proof__dot" /><span>Windows x64</span><i /> <span>{release.size}</span><i /> <a href={release.pageUrl} target="_blank" rel="noreferrer">Release notes + SHA-256 <ArrowUpRight size={12} /></a></div>
+              <div className="eyebrow"><span className="eyebrow__line" /> WINDOWS NETWORK CLIENT</div>
+              <h1 id="hero-title">Private network infrastructure.<br /><em>Controlled at the packet level.</em></h1>
+              <p className="hero-copy__lead">WinDivert-level packet control, DPI-aware routing and a zero-knowledge identity model for Windows.</p>
+              <div className="hero-actions"><DownloadLink release={release} /></div>
             </div>
             <div className="hero-product"><StatusCard /></div>
           </div>
