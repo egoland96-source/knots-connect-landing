@@ -912,3 +912,39 @@ body { font-family: 'Space Grotesk', system-ui, sans-serif; }
   .hero-copy__lead { font-size: 15px !important; }
   .hero-actions .button { width: auto !important; }
 }
+
+/* Final flat-hero cleanup: no ambient rings, blur, glow, or floating treatment. */
+.hero-section,
+.hero-section::before,
+.hero-section::after,
+.hero-section .hero-image-layer,
+.hero-product,
+.status-visual,
+.status-visual::before,
+.status-visual::after,
+.status-visual__halo,
+.status-visual__halo--one,
+.status-visual__halo--two,
+.floating-readout {
+  background: #0a0f1c !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+.hero-section .hero-image-layer,
+.status-visual__halo,
+.floating-readout { display: none !important; }
+.actual-screen,
+.actual-screen.actual-screen--tracking {
+  border: 1px solid #465568 !important;
+  border-radius: 0 !important;
+  background: #101827 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+.actual-screen__button,
+.actual-screen__image { border-radius: 0 !important; }
+.actual-screen__caption { border-radius: 0 !important; box-shadow: none !important; }
