@@ -7,7 +7,7 @@ export default function LegalSection() {
         <div className="section-kicker"><span>04 / LEGAL DOCUMENTS</span><span className="section-kicker__rule" /></div>
         <div className="policy-section__heading reveal-item" data-reveal-item>
           <div>
-            <h2 id="policy-title">Policies &amp; legal<br /><em>at a glance.</em></h2>
+            <h2 id="policy-title" className="headline-motion">Policies &amp; legal<br /><em>at a glance.</em></h2>
             <p>Official service documents for privacy, acceptable use and software limitations.</p>
           </div>
           <aside className="policy-review-note" role="note">
