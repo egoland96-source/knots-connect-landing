@@ -4,15 +4,16 @@ export default function LegalSection() {
   return (
     <section className="policy-section reveal-on-scroll" id="legal" data-reveal aria-labelledby="policy-title">
       <div className="section-width policy-section__inner">
-        <div className="section-kicker"><span>04 / POLICIES &amp; LEGAL</span><span className="section-kicker__rule" /></div>
+        <div className="section-kicker"><span>04 / LEGAL DOCUMENTS</span><span className="section-kicker__rule" /></div>
         <div className="policy-section__heading">
           <div>
-            <h2 id="policy-title">Policies, terms<br /><em>&amp; notices.</em></h2>
-            <p>Review privacy, acceptable use and important service terms.</p>
+            <h2 id="policy-title">Policies &amp; legal<br /><em>at a glance.</em></h2>
+            <p>Official service documents for privacy, acceptable use and software limitations.</p>
           </div>
           <aside className="policy-review-note" role="note">
-            <span>OWNER-PROVIDED DRAFT · REVIEW REQUIRED</span>
-            <p>Zero-log, zero-knowledge, data-handling and liability statements below have not been independently verified. Confirm them against current product behavior and applicable law before publication.</p>
+            <span>DOCUMENT CENTRE</span>
+            <p><strong>Effective date</strong><br />18 October 2026</p>
+            <p className="policy-review-note__meta">Version 1.0&nbsp;&nbsp;·&nbsp;&nbsp;Knots Connect</p>
           </aside>
         </div>
 
