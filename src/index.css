@@ -1439,3 +1439,48 @@ body { font-family: 'Space Grotesk', system-ui, sans-serif; }
   .feature-list:has(.feature-card:hover) .feature-card:not(:hover) { filter: none !important; opacity: 1 !important; }
   .feature-card:hover { transform: none !important; }
 }
+
+/* Focus mode: after a deliberate hover pause, the selected capability takes priority. */
+@media (hover: hover) and (pointer: fine) {
+  .story-section:has(.feature-card:hover) .section-kicker,
+  .story-section:has(.feature-card:hover) .story-section__heading,
+  .story-section:has(.feature-card:hover) .feature-card:not(:hover) {
+    filter: blur(3px);
+    opacity: .42;
+    transition: filter .34s ease-out, opacity .34s ease-out;
+    transition-delay: .85s;
+  }
+  .story-section:has(.feature-card:hover) .feature-list {
+    background: #080d17;
+    transition: background-color .34s ease-out;
+    transition-delay: .85s;
+  }
+  .feature-card:hover {
+    z-index: 5;
+    transform: translateY(-7px) scale(1.035) !important;
+    border-color: #d7e0eb !important;
+    background: #1a2738 !important;
+    filter: none !important;
+    opacity: 1 !important;
+    transition: transform .38s cubic-bezier(.22,.8,.28,1), background-color .28s ease-out, border-color .28s ease-out !important;
+    transition-delay: .85s !important;
+  }
+  .feature-card:hover h3,
+  .feature-card:hover p,
+  .feature-card:hover .feature-card__number,
+  .feature-card:hover .feature-card__type,
+  .feature-card:hover a {
+    color: #ffffff !important;
+    text-shadow: 0 0 16px rgba(214,226,240,.28);
+    transition: color .3s ease-out, text-shadow .3s ease-out;
+    transition-delay: .95s;
+  }
+  .feature-card:hover h3 { letter-spacing: -.035em !important; }
+  .feature-card:hover a { text-shadow: 0 0 12px rgba(214,226,240,.34); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-section:has(.feature-card:hover) .section-kicker,
+  .story-section:has(.feature-card:hover) .story-section__heading,
+  .story-section:has(.feature-card:hover) .feature-card:not(:hover) { filter: none !important; opacity: 1 !important; }
+  .feature-card:hover { transform: none !important; }
+}
