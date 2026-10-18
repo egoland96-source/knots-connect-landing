@@ -77,9 +77,9 @@ function DownloadLink() {
 function Logo({ compact = false }: { compact?: boolean }) {
   return (
     <a className={compact ? "brand brand--compact" : "brand"} href="#top" aria-label="Knots Connect home">
-      <span className="brand__mark" aria-hidden="true"><span className="brand__knot">⌁</span></span>
+      <span className="brand__mark" aria-hidden="true"><span className="brand__knot" /></span>
       <span className="brand__copy">
-        <strong>KNOTS<span>CONNECT</span></strong>
+        <strong>KNOTS <span>CONNECT</span></strong>
         {!compact && <small>PRIVATE NETWORK CLIENT</small>}
       </span>
     </a>
