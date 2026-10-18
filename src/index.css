@@ -1051,3 +1051,161 @@ body { font-family: 'Space Grotesk', system-ui, sans-serif; }
   .feature-card, .feature-card:first-child { min-height: 240px !important; padding: 22px 20px !important; }
   .feature-card h3 { margin-top: 40px !important; }
 }
+
+/* Remaining sections: one continuous dark infrastructure product system. */
+.protocol-section,
+.security-section,
+.download-section,
+.policy-section,
+.site-footer {
+  color: #e7edf4 !important;
+  background: #0a0f1c !important;
+  border-color: #202a39 !important;
+}
+.protocol-section::before,
+.security-section::before,
+.download-section::before,
+.policy-section::before,
+.download-section__grid { display: none !important; }
+.protocol-section__inner,
+.security-section__inner { padding-top: 132px !important; padding-bottom: 132px !important; }
+.protocol-section__copy h2,
+.security-section__copy h2,
+.download-section h2,
+.policy-section__heading h2 {
+  color: #f2f5f8 !important;
+  font-weight: 700 !important;
+  letter-spacing: -.08em !important;
+}
+.protocol-section__copy h2 em,
+.security-section__copy h2 em,
+.download-section h2 em,
+.policy-section__heading h2 em {
+  color: #c8d3e0 !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+.protocol-section__copy > p,
+.security-section__copy > p,
+.download-section__action > p,
+.policy-section__heading > div > p {
+  color: #9da9ba !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+}
+/* Flat technical route diagram. */
+.image-frame {
+  border: 1px solid #39485b !important;
+  border-radius: 0 !important;
+  background: #101827 !important;
+  box-shadow: none !important;
+}
+.image-frame::after { display: none !important; }
+.image-frame__tag { color: #aab8c8 !important; }
+.image-frame__coordinate { color: #718096 !important; }
+.signal-board {
+  height: clamp(280px, 34vw, 390px) !important;
+  background: #101827 !important;
+}
+.signal-board::before { opacity: .34 !important; background-image: linear-gradient(#334155 1px,transparent 1px),linear-gradient(90deg,#334155 1px,transparent 1px) !important; mask-image: none !important; }
+.signal-board__axis { background: #465568 !important; }
+.signal-board__route,
+.signal-board__route--two { background: #a7b5c5 !important; box-shadow: none !important; }
+.signal-board__node { width: 8px !important; height: 8px !important; border-radius: 0 !important; background: #d7e0eb !important; box-shadow: none !important; }
+.signal-board__readout { color: #aab8c8 !important; }
+.signal-board__readout b { color: #7f8b9d !important; }
+/* Compact capability rows instead of soft icon cards. */
+.protocol-points { gap: 0 !important; margin-bottom: 32px !important; border-top: 1px solid #39485b; }
+.protocol-points > div { gap: 16px !important; padding: 16px 0 !important; border-bottom: 1px solid #202a39; }
+.protocol-points > div > span { display: none !important; }
+.protocol-points strong { color: #e7edf4 !important; font-size: 13px !important; font-weight: 650 !important; }
+.protocol-points small { color: #8492a4 !important; font-size: 12px !important; }
+.outline-link {
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: #b7c5d5 !important;
+  font-size: 10px !important;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.outline-link:hover { color: #ffffff !important; }
+/* Privacy visual becomes a flat technical status panel. */
+.security-section__visual { min-height: 360px; }
+.security-orbit {
+  width: min(500px,100%) !important;
+  aspect-ratio: 1.45 !important;
+  border: 1px solid #39485b !important;
+  border-radius: 0 !important;
+  background: #101827 !important;
+  box-shadow: none !important;
+}
+.security-orbit::before,
+.security-orbit::after,
+.security-orbit__beam { display: none !important; }
+.security-orbit__core {
+  width: 178px !important;
+  height: 86px !important;
+  border: 1px solid #718096 !important;
+  border-radius: 0 !important;
+  color: #d7e0eb !important;
+  background: #172131 !important;
+  box-shadow: none !important;
+}
+.security-orbit__core span { color: #aab8c8 !important; }
+.security-orbit i { width: 7px !important; height: 7px !important; border-radius: 0 !important; background: #9da9ba !important; box-shadow: none !important; }
+.orbit-caption { position: static !important; margin-top: 14px; padding: 0 !important; border: 0 !important; border-radius: 0 !important; color: #8492a4 !important; background: none !important; backdrop-filter: none !important; font-size: 9px !important; }
+.status-dot { background: #aab8c8 !important; box-shadow: none !important; }
+.security-callout {
+  max-width: 430px !important;
+  padding: 16px 0 !important;
+  border: 0 !important;
+  border-top: 1px solid #39485b !important;
+  border-bottom: 1px solid #202a39 !important;
+  border-radius: 0 !important;
+  background: none !important;
+}
+.security-callout > svg:first-child { color: #aab8c8 !important; }
+.security-callout > svg:last-child { color: #8492a4 !important; }
+.security-callout strong { color: #e7edf4 !important; font-size: 13px !important; }
+.security-callout small { color: #8492a4 !important; font-size: 11px !important; }
+/* Download is a formal distribution block. */
+.download-section { border-top: 1px solid #39485b !important; border-bottom: 1px solid #39485b !important; }
+.download-section__inner { padding-top: 112px !important; padding-bottom: 112px !important; }
+.download-section__action { max-width: 430px !important; }
+.download-section__action .button--primary { min-width: 270px; border-radius: 3px !important; background: #f4f7fa !important; color: #0a0f1c !important; box-shadow: none !important; }
+.download-section__action .button--primary:hover { background: #cbd8e7 !important; box-shadow: none !important; transform: none !important; }
+.download-section__note { color: #8492a4 !important; }
+.download-section__note span { color: #718096 !important; }
+.checksum-panel { margin-top: 24px !important; padding: 16px 0 !important; border: 0 !important; border-top: 1px solid #39485b !important; border-bottom: 1px solid #202a39 !important; border-radius: 0 !important; background: none !important; }
+.checksum-panel > div { color: #8492a4 !important; }
+.checksum-panel > div a { color: #b7c5d5 !important; }
+.checksum-panel code { color: #c8d3e0 !important; }
+.release-caveat { color: #718096 !important; }
+/* Legal documentation: list rows, not marketing cards. */
+.policy-section { padding: 132px 0 142px !important; border-top: 1px solid #202a39 !important; background: #0d1421 !important; }
+.policy-section__heading { margin: 28px 0 46px !important; }
+.policy-section__heading h2 { font-size: clamp(46px,5vw,72px) !important; }
+.policy-review-note { border-left-color: #39485b !important; color: #aab8c8 !important; }
+.policy-review-note span, .policy-review-note__meta { color: #718096 !important; }
+.policy-review-note strong { color: #d7e0eb !important; }
+.policy-list { border-top: 1px solid #39485b !important; }
+.policy-card, .policy-card[open] { border-bottom: 1px solid #39485b !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; }
+.policy-card > summary { min-height: 82px !important; padding: 18px 0 !important; border: 0 !important; background: transparent !important; }
+.policy-card > summary:hover { background: #111827 !important; }
+.policy-card__number { color: #aab8c8 !important; border: 0 !important; border-radius: 0 !important; background: none !important; }
+.policy-card__title strong { color: #e7edf4 !important; font-size: 15px !important; }
+.policy-card__title small { color: #8492a4 !important; font-size: 10px !important; }
+.policy-card__chevron { color: #8492a4 !important; }
+.policy-card__body { border-top: 1px solid #202a39 !important; background: #0a0f1c !important; }
+.policy-card__body h3 { color: #d7e0eb !important; }
+.policy-card__body p, .policy-card__body li { color: #9da9ba !important; }
+.site-footer { border-top: 1px solid #202a39 !important; background: #0a0f1c !important; }
+.site-footer__meta, .site-footer__meta a { color: #8492a4 !important; }
+.site-footer__meta a:hover { color: #f4f7fa !important; }
+@media (max-width: 650px) {
+  .protocol-section__inner, .security-section__inner { padding-top: 92px !important; padding-bottom: 92px !important; }
+  .download-section__inner { padding-top: 84px !important; padding-bottom: 84px !important; }
+  .policy-section { padding: 94px 0 102px !important; }
+  .policy-card > summary { padding: 16px 0 !important; }
+}
