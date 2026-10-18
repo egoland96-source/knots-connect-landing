@@ -1209,3 +1209,87 @@ body { font-family: 'Space Grotesk', system-ui, sans-serif; }
   .policy-section { padding: 94px 0 102px !important; }
   .policy-card > summary { padding: 16px 0 !important; }
 }
+
+/* Restrained motion and finished-page density pass. */
+:root { --motion-out: cubic-bezier(.22,.8,.28,1); }
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .34s var(--motion-out), transform .34s var(--motion-out);
+}
+.reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+.reveal-on-scroll .feature-card,
+.reveal-on-scroll .protocol-section__visual,
+.reveal-on-scroll .protocol-section__copy,
+.reveal-on-scroll .security-section__copy,
+.reveal-on-scroll .security-section__visual,
+.reveal-on-scroll .download-section__inner > *,
+.reveal-on-scroll .policy-section__heading,
+.reveal-on-scroll .policy-list {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .3s var(--motion-out), transform .3s var(--motion-out);
+}
+.reveal-on-scroll.is-visible .feature-card,
+.reveal-on-scroll.is-visible .protocol-section__visual,
+.reveal-on-scroll.is-visible .protocol-section__copy,
+.reveal-on-scroll.is-visible .security-section__copy,
+.reveal-on-scroll.is-visible .security-section__visual,
+.reveal-on-scroll.is-visible .download-section__inner > *,
+.reveal-on-scroll.is-visible .policy-section__heading,
+.reveal-on-scroll.is-visible .policy-list { opacity: 1; transform: translateY(0); }
+.reveal-on-scroll.is-visible .feature-card:nth-child(2),
+.reveal-on-scroll.is-visible .download-section__inner > :nth-child(2) { transition-delay: 60ms; }
+.reveal-on-scroll.is-visible .feature-card:nth-child(3) { transition-delay: 120ms; }
+.reveal-on-scroll.is-visible .protocol-section__copy,
+.reveal-on-scroll.is-visible .security-section__visual { transition-delay: 60ms; }
+.reveal-on-scroll.is-visible .policy-list { transition-delay: 60ms; }
+/* Keep the page compact and intentional between major blocks. */
+.protocol-section__inner,
+.security-section__inner { padding-top: 96px !important; padding-bottom: 96px !important; }
+.story-section { padding-top: 104px !important; padding-bottom: 112px !important; }
+.download-section__inner { padding-top: 82px !important; padding-bottom: 82px !important; }
+.policy-section { padding-top: 100px !important; padding-bottom: 108px !important; }
+/* Stronger structural edges without cards or shadows. */
+.protocol-section__visual,
+.security-section__visual { min-height: 330px; }
+.protocol-points > div { min-height: 58px; }
+.security-callout { min-height: 64px; }
+.checksum-panel { min-height: 78px; }
+.policy-list { border-bottom: 1px solid #39485b !important; }
+.policy-card > summary { min-height: 72px !important; }
+/* Technical diagram movement: slow, low-contrast, no glow. */
+.signal-board__route { animation: route-drift 7s ease-in-out infinite alternate; transform-origin: left center; }
+.signal-board__route--two { animation-delay: -2.4s; }
+.signal-board__node { animation: node-status 5s ease-in-out infinite alternate; }
+.signal-board__node--two { animation-delay: -1.5s; }
+.signal-board__node--three { animation-delay: -3s; }
+.security-orbit i { animation: node-status 6s ease-in-out infinite alternate; }
+.security-orbit i:nth-of-type(2) { animation-delay: -2s; }
+.security-orbit i:nth-of-type(3) { animation-delay: -4s; }
+@keyframes route-drift { from { opacity: .62; } to { opacity: 1; } }
+@keyframes node-status { from { opacity: .55; } to { opacity: 1; } }
+/* Hover feedback stays informational, never playful. */
+.button--primary, .outline-link, .feature-card a, .site-footer__meta a { transition: color .2s ease-out, background-color .2s ease-out, border-color .2s ease-out, opacity .2s ease-out; }
+.feature-card { transition: background-color .2s ease-out, border-color .2s ease-out !important; }
+.feature-card:hover { background: #131d2b !important; }
+.policy-card > summary { transition: background-color .2s ease-out, color .2s ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll,
+  .reveal-on-scroll .feature-card,
+  .reveal-on-scroll .protocol-section__visual,
+  .reveal-on-scroll .protocol-section__copy,
+  .reveal-on-scroll .security-section__copy,
+  .reveal-on-scroll .security-section__visual,
+  .reveal-on-scroll .download-section__inner > *,
+  .reveal-on-scroll .policy-section__heading,
+  .reveal-on-scroll .policy-list { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .signal-board__route, .signal-board__node, .security-orbit i { animation: none !important; }
+}
+@media (max-width: 650px) {
+  .protocol-section__inner,
+  .security-section__inner { padding-top: 72px !important; padding-bottom: 72px !important; }
+  .story-section { padding-top: 78px !important; padding-bottom: 86px !important; }
+  .download-section__inner { padding-top: 68px !important; padding-bottom: 68px !important; }
+  .policy-section { padding-top: 76px !important; padding-bottom: 84px !important; }
+}
