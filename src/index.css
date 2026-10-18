@@ -407,3 +407,21 @@ button:focus-visible,a:focus-visible { outline:2px solid #55d6ff; outline-offset
   white-space: nowrap;
 }
 .brand__copy strong span { color: #d9e9f8; }
+
+/* Use the supplied blue/gray interlocking-knot mark in the header. */
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.brand__mark img {
+  display: block;
+  width: 36px;
+  height: 30px;
+  object-fit: contain;
+}
