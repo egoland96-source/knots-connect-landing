@@ -166,9 +166,11 @@ function StatusCard() {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [focusedFeature, setFocusedFeature] = useState<string | null>(null);
   const [release, setRelease] = useState<ReleaseInfo>(FALLBACK_RELEASE);
   const spotlightRef = useRef<HTMLDivElement>(null);
   const spotlightFrameRef = useRef<number | null>(null);
+  const featureFocusTimerRef = useRef<number | null>(null);
   useEffect(() => {
     fetch("https://api.github.com/repos/egoland96-source/knots-connect-desktop/releases/latest")
       .then((response) => response.json())
@@ -233,7 +235,18 @@ export default function Home() {
 
   useEffect(() => () => {
     if (spotlightFrameRef.current) cancelAnimationFrame(spotlightFrameRef.current);
+    if (featureFocusTimerRef.current) window.clearTimeout(featureFocusTimerRef.current);
   }, []);
+
+  const handleFeatureEnter = (number: string) => {
+    if (featureFocusTimerRef.current) window.clearTimeout(featureFocusTimerRef.current);
+    featureFocusTimerRef.current = window.setTimeout(() => setFocusedFeature(number), 1100);
+  };
+  const handleFeatureLeave = () => {
+    if (featureFocusTimerRef.current) window.clearTimeout(featureFocusTimerRef.current);
+    featureFocusTimerRef.current = null;
+    setFocusedFeature(null);
+  };
 
   return (
     <div className="site-shell" id="top" ref={spotlightRef} onPointerMove={handlePagePointerMove}>
@@ -285,10 +298,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="story-section section-width reveal-on-scroll" id="features" data-reveal aria-labelledby="features-title">
+        <section className={`story-section section-width reveal-on-scroll ${focusedFeature ? "story-section--focus" : ""}`} id="features" data-reveal aria-labelledby="features-title">
           <div className="section-kicker"><span>01 / WHY KNOTS</span><span className="section-kicker__rule" /></div>
           <div className="story-section__heading reveal-item" data-reveal-item><h2 id="features-title" className="headline-motion">Packet-level control.<br /><em>Local decisions.</em></h2><p>Core capabilities of the Windows client, described at the level where routing and privacy decisions are made.</p></div>
-          <div className="feature-list">{features.map(({ number, title, description, accent, href }) => <article className={`feature-card feature-card--${accent} reveal-item`} data-reveal-item key={number}><div className="feature-card__top"><span className="feature-card__number">{number}</span><span className="feature-card__type">CORE CAPABILITY</span></div><h3>{title}</h3><p>{description}</p><a href={href} target="_blank" rel="noreferrer">View source <ArrowUpRight size={13} aria-hidden="true" /></a></article>)}</div>
+          <div className="feature-list">{features.map(({ number, title, description, accent, href }) => <article className={`feature-card feature-card--${accent} reveal-item ${focusedFeature === number ? "feature-card--focused" : ""}`} data-reveal-item onMouseEnter={() => handleFeatureEnter(number)} onMouseLeave={handleFeatureLeave} onFocus={() => handleFeatureEnter(number)} onBlur={handleFeatureLeave} key={number}><div className="feature-card__top"><span className="feature-card__number">{number}</span><span className="feature-card__type">CORE CAPABILITY</span></div><h3>{title}</h3><p>{description}</p><a href={href} target="_blank" rel="noreferrer">View source <ArrowUpRight size={13} aria-hidden="true" /></a></article>)}</div>
         </section>
 
         <section className="protocol-section reveal-on-scroll" id="protocol" data-reveal aria-labelledby="protocol-title">
