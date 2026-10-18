@@ -1593,3 +1593,9 @@ body { font-family: 'Space Grotesk', system-ui, sans-serif; }
   .reveal-observer-active .reveal-on-scroll.is-visible,
   .reveal-observer-active .reveal-item.is-visible { opacity: 1 !important; transform: none !important; }
 }
+
+/* Sections retain their structural presence; their content reveals on section entry. */
+.reveal-observer-active .reveal-on-scroll:not(.is-visible) {
+  opacity: 1 !important;
+  transform: none !important;
+}

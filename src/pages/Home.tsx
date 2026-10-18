@@ -222,10 +222,17 @@ export default function Home() {
       return;
     }
     document.documentElement.classList.add("reveal-observer-active");
+    const revealTimers: number[] = [];
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
+          if (entry.target.hasAttribute("data-reveal")) {
+            entry.target.querySelectorAll<HTMLElement>("[data-reveal-item]").forEach((child, index) => {
+              const timer = window.setTimeout(() => child.classList.add("is-visible"), index * 65);
+              revealTimers.push(timer);
+            });
+          }
           observer.unobserve(entry.target);
         }
       });
@@ -233,6 +240,7 @@ export default function Home() {
     revealItems.forEach((item) => observer.observe(item));
     return () => {
       observer.disconnect();
+      revealTimers.forEach((timer) => window.clearTimeout(timer));
       document.documentElement.classList.remove("reveal-observer-active");
     };
   }, []);
