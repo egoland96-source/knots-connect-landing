@@ -1539,3 +1539,26 @@ body { font-family: 'Space Grotesk', system-ui, sans-serif; }
   .story-section--focus .feature-list { filter: none !important; opacity: 1 !important; }
   .story-section--focus .feature-card--focused { transform: none !important; }
 }
+
+/* Visibility guard: observer state always wins over legacy nested reveal rules. */
+.reveal-item.is-visible,
+.reveal-item.is-visible.feature-card,
+.reveal-item.is-visible.protocol-section__visual,
+.reveal-item.is-visible.protocol-section__copy,
+.reveal-item.is-visible.security-section__copy,
+.reveal-item.is-visible.security-section__visual,
+.reveal-item.is-visible.policy-section__heading,
+.reveal-item.is-visible.policy-list {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+/* Focus blur is temporary and scoped only to the capability section. */
+.story-section:not(.story-section--focus) .feature-card,
+.story-section:not(.story-section--focus) .story-section__heading { filter: none !important; opacity: 1 !important; }
+.story-section--focus .feature-card--focused { opacity: 1 !important; filter: none !important; }
+
+.story-section:not(.story-section--focus) .feature-card.reveal-item:not(.is-visible),
+.story-section:not(.story-section--focus) .story-section__heading.reveal-item:not(.is-visible) {
+  opacity: 0 !important;
+  transform: translateY(18px) !important;
+}
