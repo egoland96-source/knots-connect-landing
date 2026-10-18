@@ -586,3 +586,14 @@ body { font-family: 'Space Grotesk', system-ui, sans-serif; }
   .brand__mark img { width: 42px; height: 32px; }
   .hero-section { padding-top: 68px; }
 }
+
+/* Keep text selection calm and consistent with the premium light surface. */
+::selection {
+  background: #ffffff;
+  color: #0b1730;
+  text-shadow: 0 0 0 #0b1730;
+}
+.site-footer ::selection {
+  background: #ffffff;
+  color: #0b1730;
+}
