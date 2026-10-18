@@ -221,6 +221,7 @@ export default function Home() {
       revealItems.forEach((item) => item.classList.add("is-visible"));
       return;
     }
+    document.documentElement.classList.add("reveal-observer-active");
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -230,7 +231,10 @@ export default function Home() {
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -5% 0px" });
     revealItems.forEach((item) => observer.observe(item));
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      document.documentElement.classList.remove("reveal-observer-active");
+    };
   }, []);
 
   useEffect(() => () => {

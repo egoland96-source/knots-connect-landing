@@ -1562,3 +1562,34 @@ body { font-family: 'Space Grotesk', system-ui, sans-serif; }
   opacity: 0 !important;
   transform: translateY(18px) !important;
 }
+
+/* Fail-safe reveal architecture: without an active observer, content is always visible. */
+.reveal-on-scroll,
+.reveal-item,
+.reveal-on-scroll .feature-card,
+.reveal-on-scroll .protocol-section__visual,
+.reveal-on-scroll .protocol-section__copy,
+.reveal-on-scroll .security-section__copy,
+.reveal-on-scroll .security-section__visual,
+.reveal-on-scroll .download-section__inner > *,
+.reveal-on-scroll .policy-section__heading,
+.reveal-on-scroll .policy-list {
+  opacity: 1 !important;
+  transform: none !important;
+}
+.reveal-observer-active .reveal-on-scroll:not(.is-visible),
+.reveal-observer-active .reveal-item:not(.is-visible) {
+  opacity: 0 !important;
+  transform: translateY(18px) !important;
+}
+.reveal-observer-active .reveal-on-scroll.is-visible,
+.reveal-observer-active .reveal-item.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-observer-active .reveal-on-scroll:not(.is-visible),
+  .reveal-observer-active .reveal-item:not(.is-visible),
+  .reveal-observer-active .reveal-on-scroll.is-visible,
+  .reveal-observer-active .reveal-item.is-visible { opacity: 1 !important; transform: none !important; }
+}
