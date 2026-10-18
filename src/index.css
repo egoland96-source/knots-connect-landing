@@ -766,3 +766,31 @@ body { font-family: 'Space Grotesk', system-ui, sans-serif; }
   .policy-card__body { grid-template-columns: 1fr; padding: 24px 18px 28px; }
   .policy-review-note { max-width: none; }
 }
+
+/* Readability pass: raise supporting text sizes without disturbing the hierarchy. */
+.site-nav a, .header-link { font-size: 13px; }
+.header-status { font-size: 9px; }
+.eyebrow, .section-kicker { font-size: 10px; }
+.hero-release-proof { font-size: 9px; }
+.hero-foot-note { font-size: 12px; }
+.mono-label { font-size: 9px; }
+.signal-strip strong { font-size: 14px; }
+.signal-strip strong small { font-size: 9px; }
+.feature-card p { font-size: 13px; line-height: 1.72; }
+.feature-card a { font-size: 9px; }
+.protocol-section__copy > p, .security-section__copy > p { font-size: 15px; }
+.protocol-points strong { font-size: 12px; }
+.protocol-points small { font-size: 11px; }
+.download-section__action p { font-size: 15px; }
+.download-section__note, .release-caveat { font-size: 9px; }
+.site-footer__meta { font-size: 9px; }
+.policy-section__heading > div > p { font-size: 16px; }
+.policy-review-note p { font-size: 14px; }
+.policy-card__title small { font-size: 10px; }
+.policy-card__body p, .policy-card__body li { font-size: 13px; }
+@media (max-width: 650px) {
+  .site-nav a { font-size: 14px; }
+  .hero-release-proof { font-size: 8px; }
+  .feature-card p { font-size: 14px; }
+  .policy-card__body p, .policy-card__body li { font-size: 13px; }
+}

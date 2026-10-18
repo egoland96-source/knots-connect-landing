@@ -16,16 +16,18 @@ import {
 import LegalSection from "@/components/LegalSection";
 
 const SOURCE_REPOSITORY_URL = "https://github.com/egoland96-source/knots-connect-desktop";
-const RELEASE_URL = `${SOURCE_REPOSITORY_URL}/releases/tag/v1.3.2`;
-const RELEASES_URL = `${SOURCE_REPOSITORY_URL}/releases/latest`;
-const WINDOWS_INSTALLER_URL = `${SOURCE_REPOSITORY_URL}/releases/download/v1.3.2/Knots-Connect-Setup-1.3.2.exe`;
 const DPI_SOURCE_URL = `${SOURCE_REPOSITORY_URL}/blob/main/src/privacy/dpi/DPIDomains.ts`;
 const TRACKER_SOURCE_URL = `${SOURCE_REPOSITORY_URL}/blob/main/src/privacy/categories/TrackerBlocker.ts`;
 const MODES_SOURCE_URL = `${SOURCE_REPOSITORY_URL}/blob/main/src/pages/Dashboard/components/ModeSwitcher.tsx`;
 const PRIVACY_SOURCE_URL = `${SOURCE_REPOSITORY_URL}/tree/main/src/privacy`;
-const APP_VERSION = "1.3.2";
-const INSTALLER_SIZE = "112 MB";
-const INSTALLER_SHA256 = "adb80493e05752e5b270ef05d48985ad42faea12142917a86b4c2131645444df";
+type ReleaseInfo = { version: string; size: string; url: string; pageUrl: string; sha256: string };
+const FALLBACK_RELEASE: ReleaseInfo = {
+  version: "v1.3.5",
+  size: "78 MB",
+  url: `${SOURCE_REPOSITORY_URL}/releases/download/v1.3.5/Knots-Connect-Setup-1.3.5.exe`,
+  pageUrl: `${SOURCE_REPOSITORY_URL}/releases/tag/v1.3.5`,
+  sha256: "7a704ff82dfd516097d4206d9440289dff6eed85ed3da5a9190bf50969aded9c",
+};
 
 const features = [
   {
@@ -60,16 +62,16 @@ const locations = [
   { code: "FI", city: "Helsinki", country: "Finland" },
 ];
 
-function DownloadLink() {
+function DownloadLink({ release }: { release: ReleaseInfo }) {
   return (
     <a
       className="button button--primary"
-      href={WINDOWS_INSTALLER_URL}
-      aria-label={`Download Knots Connect ${APP_VERSION} Windows 64-bit installer, ${INSTALLER_SIZE}`}
+      href={release.url}
+      aria-label={`Download Knots Connect ${release.version} Windows 64-bit installer, ${release.size}`}
     >
       <Download size={16} aria-hidden="true" />
       <span>Download for Windows</span>
-      <small>v{APP_VERSION} · x64</small>
+      <small>{release.version} · x64</small>
     </a>
   );
 }
@@ -164,9 +166,26 @@ function StatusCard() {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [release, setRelease] = useState<ReleaseInfo>(FALLBACK_RELEASE);
   const spotlightRef = useRef<HTMLDivElement>(null);
   const spotlightFrameRef = useRef<number | null>(null);
-
+  useEffect(() => {
+    fetch("https://api.github.com/repos/egoland96-source/knots-connect-desktop/releases/latest")
+      .then((response) => response.json())
+      .then((data) => {
+        const installer = data.assets?.find((asset: { name?: string }) => asset.name?.endsWith(".exe"));
+        if (!installer || !data.tag_name) return;
+        const digest = typeof installer.digest === "string" ? installer.digest.replace(/^sha256:/, "") : "";
+        setRelease({
+          version: data.tag_name,
+          size: `${Math.round(installer.size / 1024 / 1024)} MB`,
+          url: installer.browser_download_url,
+          pageUrl: data.html_url || `${SOURCE_REPOSITORY_URL}/releases/latest`,
+          sha256: digest || FALLBACK_RELEASE.sha256,
+        });
+      })
+      .catch(() => {});
+  }, []);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -235,7 +254,7 @@ export default function Home() {
             <a href="#legal" onClick={() => setMenuOpen(false)}>Policies</a>
           </nav>
           <div className="site-header__actions">
-            <a className="header-status" href={RELEASE_URL} target="_blank" rel="noreferrer"><span /> VERSION {APP_VERSION}</a>
+            <a className="header-status" href={release.pageUrl} target="_blank" rel="noreferrer"><span /> VERSION {release.version}</a>
             <a className="header-link" href="#download">Get the client <ArrowUpRight size={14} /></a>
             <button className="menu-toggle" type="button" onClick={() => setMenuOpen((open) => !open)} aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} aria-controls="primary-navigation">{menuOpen ? <X size={19} /> : <Menu size={19} />}</button>
           </div>
@@ -250,19 +269,19 @@ export default function Home() {
               <div className="eyebrow"><span className="eyebrow__line" /> PRIVATE NETWORK CLIENT</div>
               <h1 id="hero-title">Your connection.<br /><em>Your control.</em></h1>
               <p className="hero-copy__lead">VPN connectivity, network protection and tracker blocking in one app.</p>
-              <div className="hero-actions"><DownloadLink /><a className="text-link" href="#features">Explore features <ChevronDown size={15} /></a></div>
-              <div className="hero-release-proof"><span className="hero-release-proof__dot" /><span>Windows x64</span><i /> <span>{INSTALLER_SIZE}</span><i /> <a href={RELEASE_URL} target="_blank" rel="noreferrer">Release notes + SHA-256 <ArrowUpRight size={12} /></a></div>
+              <div className="hero-actions"><DownloadLink release={release} /><a className="text-link" href="#features">Explore features <ChevronDown size={15} /></a></div>
+              <div className="hero-release-proof"><span className="hero-release-proof__dot" /><span>Windows x64</span><i /> <span>{release.size}</span><i /> <a href={release.pageUrl} target="_blank" rel="noreferrer">Release notes + SHA-256 <ArrowUpRight size={12} /></a></div>
             </div>
             <div className="hero-product"><StatusCard /></div>
           </div>
-          <div className="hero-section__foot section-width"><a className="scroll-note" href="#features"><span className="scroll-note__line" /> EXPLORE THE FEATURES <ChevronDown size={13} /></a><a className="hero-foot-note" href={RELEASE_URL} target="_blank" rel="noreferrer">Release v{APP_VERSION} · published by GitHub <ArrowUpRight size={12} /></a></div>
+          <div className="hero-section__foot section-width"><a className="scroll-note" href="#features"><span className="scroll-note__line" /> EXPLORE THE FEATURES <ChevronDown size={13} /></a><a className="hero-foot-note" href={release.pageUrl} target="_blank" rel="noreferrer">Release {release.version} · published by GitHub <ArrowUpRight size={12} /></a></div>
         </section>
 
         <section className="signal-strip reveal-on-scroll" id="release" data-reveal aria-label="Release information">
           <div className="section-width signal-strip__inner">
-            <div><span className="mono-label">LATEST RELEASE</span><strong>v{APP_VERSION} <small>GitHub release</small></strong></div>
+            <div><span className="mono-label">LATEST RELEASE</span><strong>{release.version} <small>GitHub release</small></strong></div>
             <div><span className="mono-label">PLATFORM</span><strong>Windows <small>x64</small></strong></div>
-            <div><span className="mono-label">INSTALLER</span><strong>{INSTALLER_SIZE} <small>.exe</small></strong></div>
+            <div><span className="mono-label">INSTALLER</span><strong>{release.size} <small>.exe</small></strong></div>
             <div><span className="mono-label">INTEGRITY</span><strong>SHA-256 <small>published</small></strong></div>
           </div>
         </section>
@@ -290,14 +309,14 @@ export default function Home() {
         <section className="download-section reveal-on-scroll" id="download" data-reveal aria-labelledby="download-title">
           <div className="download-section__grid" aria-hidden="true" />
           <div className="section-width download-section__inner">
-            <div><div className="eyebrow"><span className="eyebrow__line" /> WINDOWS CLIENT · v{APP_VERSION}</div><h2 id="download-title">Your next route<br /><em>starts here.</em></h2></div>
-            <div className="download-section__action"><p>Download the Windows 64-bit installer, then verify its SHA-256 against the publisher’s release page.</p><DownloadLink /><span className="download-section__note">Windows x64 <span>·</span> {INSTALLER_SIZE} <span>·</span> Minimum OS version not specified</span><div className="checksum-panel"><div><span>INSTALLER SHA-256</span><a href={RELEASE_URL} target="_blank" rel="noreferrer">Verify on GitHub <ArrowUpRight size={12} /></a></div><code>{INSTALLER_SHA256}</code></div><p className="release-caveat">A separate code-signature detail is not listed on the release page. Use the published checksum to check the downloaded file.</p></div>
+            <div><div className="eyebrow"><span className="eyebrow__line" /> WINDOWS CLIENT · {release.version}</div><h2 id="download-title">Your next route<br /><em>starts here.</em></h2></div>
+            <div className="download-section__action"><p>Download the Windows 64-bit installer, then verify its SHA-256 against the publisher’s release page.</p><DownloadLink release={release} /><span className="download-section__note">Windows x64 <span>·</span> {release.size} <span>·</span> Minimum OS version not specified</span><div className="checksum-panel"><div><span>INSTALLER SHA-256</span><a href={release.pageUrl} target="_blank" rel="noreferrer">Verify on GitHub <ArrowUpRight size={12} /></a></div><code>{release.sha256}</code></div><p className="release-caveat">The installer checksum is published with the GitHub release for independent verification.</p></div>
           </div>
         </section>
         <LegalSection />
       </main>
 
-      <footer className="site-footer"><div className="section-width site-footer__inner"><Logo /><div className="site-footer__meta"><span>© 2026 KNOTS CONNECT</span><a href={PRIVACY_SOURCE_URL} target="_blank" rel="noreferrer">Privacy-filter source</a><a href={RELEASE_URL} target="_blank" rel="noreferrer">Release notes + SHA-256</a><a href={SOURCE_REPOSITORY_URL} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={13} /></a><a href="#top">Back to top <ArrowUpRight size={13} /></a></div></div></footer>
+      <footer className="site-footer"><div className="section-width site-footer__inner"><Logo /><div className="site-footer__meta"><span>© 2026 KNOTS CONNECT</span><a href={PRIVACY_SOURCE_URL} target="_blank" rel="noreferrer">Privacy-filter source</a><a href={release.pageUrl} target="_blank" rel="noreferrer">Release notes + SHA-256</a><a href={SOURCE_REPOSITORY_URL} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={13} /></a><a href="#top">Back to top <ArrowUpRight size={13} /></a></div></div></footer>
     </div>
   );
 }
