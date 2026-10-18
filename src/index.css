@@ -1293,3 +1293,95 @@ body { font-family: 'Space Grotesk', system-ui, sans-serif; }
   .download-section__inner { padding-top: 68px !important; padding-bottom: 68px !important; }
   .policy-section { padding-top: 76px !important; padding-bottom: 84px !important; }
 }
+
+/* Aggressive completion pass: tighter rhythm, stronger weight, perceptible but disciplined motion. */
+.section-width { width: min(100% - 72px, 1240px); }
+.site-header__inner { width: min(100% - 72px, 1240px); }
+.signal-strip {
+  border-top: 1px solid #465568 !important;
+  border-bottom: 1px solid #465568 !important;
+  background: #111827 !important;
+}
+.signal-strip__inner { min-height: 92px !important; }
+.signal-strip__inner > div { min-height: 64px !important; border-left-color: #39485b !important; }
+.signal-strip strong { color: #f0f3f6 !important; font-size: 16px !important; }
+.signal-strip strong small { color: #aab8c8 !important; }
+.mono-label { color: #9da9ba !important; font-size: 10px !important; }
+/* Reduce voids between core capabilities and the client. */
+.story-section { padding-top: 76px !important; padding-bottom: 78px !important; }
+.story-section__heading { margin-top: 20px !important; }
+.story-section__heading h2 { font-size: clamp(52px, 5.8vw, 82px) !important; }
+.story-section__heading p { color: #b5c0ce !important; font-size: 15px !important; }
+.feature-list { margin-top: 42px !important; }
+.feature-card, .feature-card:first-child {
+  min-height: 250px !important;
+  padding: 23px 26px 22px !important;
+  border-color: #465568 !important;
+  background: #111827 !important;
+}
+.feature-card:hover { background: #172131 !important; border-color: #718096 !important; }
+.feature-card h3 { margin-top: 46px !important; font-size: 23px !important; }
+.feature-card p { color: #b5c0ce !important; font-size: 14px !important; }
+.feature-card__number { color: #d0d9e4 !important; }
+.feature-card__type { color: #9da9ba !important; }
+/* Client: compact technical split with visible structure. */
+.protocol-section__inner,
+.security-section__inner { padding-top: 76px !important; padding-bottom: 78px !important; gap: 64px !important; }
+.protocol-section__visual, .security-section__visual { min-height: 270px !important; }
+.protocol-section__copy h2, .security-section__copy h2 { font-size: clamp(50px, 5.4vw, 76px) !important; }
+.protocol-section__copy > p, .security-section__copy > p { color: #b5c0ce !important; max-width: 46ch !important; margin: 18px 0 22px !important; }
+.protocol-points { margin-bottom: 22px !important; }
+.protocol-points > div { min-height: 50px !important; padding: 11px 0 !important; }
+.protocol-points strong { color: #f0f3f6 !important; }
+.protocol-points small { color: #aab8c8 !important; }
+.image-frame { border-color: #465568 !important; }
+.signal-board { height: clamp(245px, 28vw, 320px) !important; }
+.security-orbit { width: min(450px,100%) !important; }
+/* Privacy becomes a dense information block instead of a large void. */
+.security-section__visual { min-height: 300px !important; }
+.security-callout { max-width: 480px !important; }
+/* Distribution and legal carry the same visual weight as the hero. */
+.download-section__inner { padding-top: 72px !important; padding-bottom: 74px !important; gap: 58px !important; }
+.download-section h2 { font-size: clamp(52px, 5.8vw, 82px) !important; }
+.download-section__action > p { color: #b5c0ce !important; margin-bottom: 16px !important; }
+.download-section__action .button--primary { min-height: 52px !important; }
+.policy-section { padding-top: 78px !important; padding-bottom: 84px !important; }
+.policy-section__heading { margin-top: 20px !important; margin-bottom: 28px !important; }
+.policy-section__heading h2 { font-size: clamp(50px, 5.6vw, 78px) !important; }
+.policy-section__heading > div > p { color: #b5c0ce !important; }
+.policy-card > summary { min-height: 66px !important; }
+.policy-card__title strong { font-size: 16px !important; }
+.policy-card__title small { color: #9da9ba !important; }
+.site-footer__inner { min-height: 92px !important; }
+/* Make the intended motion perceptible without making it decorative. */
+.reveal-on-scroll { transform: translateY(18px); transition-duration: .38s; }
+.reveal-on-scroll .feature-card,
+.reveal-on-scroll .protocol-section__visual,
+.reveal-on-scroll .protocol-section__copy,
+.reveal-on-scroll .security-section__copy,
+.reveal-on-scroll .security-section__visual,
+.reveal-on-scroll .download-section__inner > *,
+.reveal-on-scroll .policy-section__heading,
+.reveal-on-scroll .policy-list { transform: translateY(16px); transition-duration: .36s; }
+.reveal-on-scroll.is-visible .feature-card:nth-child(2) { transition-delay: 65ms; }
+.reveal-on-scroll.is-visible .feature-card:nth-child(3) { transition-delay: 130ms; }
+.signal-strip__inner > div { opacity: 0; transform: translateY(10px); transition: opacity .34s var(--motion-out), transform .34s var(--motion-out); }
+.signal-strip.is-visible .signal-strip__inner > div { opacity: 1; transform: translateY(0); }
+.signal-strip.is-visible .signal-strip__inner > div:nth-child(2) { transition-delay: 55ms; }
+.signal-strip.is-visible .signal-strip__inner > div:nth-child(3) { transition-delay: 110ms; }
+.signal-strip.is-visible .signal-strip__inner > div:nth-child(4) { transition-delay: 165ms; }
+@media (max-width: 900px) {
+  .section-width, .site-header__inner { width: min(100% - 48px, 760px); }
+  .protocol-section__inner, .security-section__inner { gap: 42px !important; }
+}
+@media (max-width: 650px) {
+  .section-width, .site-header__inner { width: min(100% - 36px, 760px); }
+  .signal-strip__inner { min-height: 0 !important; }
+  .story-section { padding-top: 62px !important; padding-bottom: 66px !important; }
+  .feature-list { margin-top: 30px !important; }
+  .feature-card, .feature-card:first-child { min-height: 218px !important; }
+  .protocol-section__inner, .security-section__inner { padding-top: 62px !important; padding-bottom: 64px !important; }
+  .download-section__inner { padding-top: 60px !important; padding-bottom: 62px !important; }
+  .policy-section { padding-top: 62px !important; padding-bottom: 68px !important; }
+  .site-footer__inner { min-height: 0 !important; padding-top: 28px !important; padding-bottom: 28px !important; }
+}
