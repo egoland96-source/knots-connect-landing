@@ -33,24 +33,24 @@ const features = [
   {
     number: "01",
     icon: Route,
-    title: "DPI bypass",
-    description: "Connection options designed to help keep access available on networks that inspect or restrict traffic.",
+    title: "Packet interception",
+    description: "WinDivert-level packet handling for inspecting, redirecting and shaping traffic on Windows.",
     accent: "cyan",
     href: DPI_SOURCE_URL,
   },
   {
     number: "02",
     icon: ShieldCheck,
-    title: "Tracker filtering",
-    description: "Optional filters help block third-party tracker requests, with controls inside the desktop client.",
+    title: "DPI-aware routing",
+    description: "Local routing rules adapt transport decisions for networks that inspect or restrict traffic.",
     accent: "violet",
     href: TRACKER_SOURCE_URL,
   },
   {
     number: "03",
     icon: SlidersHorizontal,
-    title: "Connection modes",
-    description: "Choose a mode such as Smart Hybrid or Privacy (VPN) to fit the connection you need.",
+    title: "Local identity",
+    description: "Cryptographic identity and privacy controls remain on the client. No central activity log.",
     accent: "green",
     href: MODES_SOURCE_URL,
   },
@@ -287,8 +287,8 @@ export default function Home() {
 
         <section className="story-section section-width reveal-on-scroll" id="features" data-reveal aria-labelledby="features-title">
           <div className="section-kicker"><span>01 / WHY KNOTS</span><span className="section-kicker__rule" /></div>
-          <div className="story-section__heading"><h2 id="features-title">Practical protection.<br /><em>Clear controls.</em></h2><p>See the benefit first, then inspect the implementation. These controls are described in the published desktop-client source.</p></div>
-          <div className="feature-list">{features.map(({ number, icon: FeatureIcon, title, description, accent, href }) => <article className={`feature-card feature-card--${accent}`} key={number}><div className="feature-card__top"><span className="feature-card__number">{number}</span><span className="feature-card__icon"><FeatureIcon size={18} aria-hidden="true" /></span></div><h3>{title}</h3><p>{description}</p><a href={href} target="_blank" rel="noreferrer">View source <ArrowUpRight size={13} aria-hidden="true" /></a></article>)}</div>
+          <div className="story-section__heading"><h2 id="features-title">Packet-level control.<br /><em>Local decisions.</em></h2><p>Core capabilities of the Windows client, described at the level where routing and privacy decisions are made.</p></div>
+          <div className="feature-list">{features.map(({ number, title, description, accent, href }) => <article className={`feature-card feature-card--${accent}`} key={number}><div className="feature-card__top"><span className="feature-card__number">{number}</span><span className="feature-card__type">CORE CAPABILITY</span></div><h3>{title}</h3><p>{description}</p><a href={href} target="_blank" rel="noreferrer">View source <ArrowUpRight size={13} aria-hidden="true" /></a></article>)}</div>
         </section>
 
         <section className="protocol-section reveal-on-scroll" id="protocol" data-reveal aria-labelledby="protocol-title">
