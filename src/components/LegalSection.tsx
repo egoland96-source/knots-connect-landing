@@ -5,7 +5,7 @@ export default function LegalSection() {
     <section className="policy-section reveal-on-scroll" id="legal" data-reveal aria-labelledby="policy-title">
       <div className="section-width policy-section__inner">
         <div className="section-kicker"><span>04 / LEGAL DOCUMENTS</span><span className="section-kicker__rule" /></div>
-        <div className="policy-section__heading">
+        <div className="policy-section__heading reveal-item" data-reveal-item>
           <div>
             <h2 id="policy-title">Policies &amp; legal<br /><em>at a glance.</em></h2>
             <p>Official service documents for privacy, acceptable use and software limitations.</p>
@@ -17,7 +17,7 @@ export default function LegalSection() {
           </aside>
         </div>
 
-        <div className="policy-list">
+        <div className="policy-list reveal-item" data-reveal-item>
           <details className="policy-card" id="privacy-policy">
             <summary>
               <span className="policy-card__number">01</span>

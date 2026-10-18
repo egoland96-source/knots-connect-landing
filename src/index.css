@@ -1385,3 +1385,19 @@ body { font-family: 'Space Grotesk', system-ui, sans-serif; }
   .policy-section { padding-top: 62px !important; padding-bottom: 68px !important; }
   .site-footer__inner { min-height: 0 !important; padding-top: 28px !important; padding-bottom: 28px !important; }
 }
+
+/* Real observer-driven targets: these states are inert until Home's IntersectionObserver adds .is-visible. */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .38s var(--motion-out), transform .38s var(--motion-out);
+}
+.reveal-item.is-visible { opacity: 1; transform: translateY(0); }
+.feature-card.reveal-item.is-visible:nth-child(2),
+.download-section__action.reveal-item.is-visible { transition-delay: 60ms; }
+.feature-card.reveal-item.is-visible:nth-child(3) { transition-delay: 120ms; }
+.protocol-section__copy.reveal-item.is-visible,
+.security-section__visual.reveal-item.is-visible { transition-delay: 60ms; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item, .reveal-item.is-visible { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
